@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import Statistics from "./Statistics";
+import Button from "./Button";
 
 const App = () => {
   // save clicks of each button to its own state
@@ -59,5 +60,5 @@ const App = () => {
   );
 };
 
-const Button = ({ onClick, text }) => <button onClick={onClick}>{text}</button>;
+//const Button = ({ onClick, text }) => <button onClick={onClick}>{text}</button>;
 export default App;
