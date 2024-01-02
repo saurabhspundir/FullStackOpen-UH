@@ -60,5 +60,4 @@ const App = () => {
   );
 };
 
-//const Button = ({ onClick, text }) => <button onClick={onClick}>{text}</button>;
 export default App;

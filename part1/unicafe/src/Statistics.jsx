@@ -1,26 +1,55 @@
-import { useState } from "react";
-
 import StatisticLine from "./StatisticLine";
 
 const Statistics = ({ good, neutral, bad }) => {
   const total = good + neutral + bad;
-  const average = good / total;
-  const percentage = average * 100;
+  const average = (good-bad) / total;
+  const percentage = `${((good)/total) * 100} %`;
   if (total > 0) {
     return (
-      <>
-        <h1>statistics</h1>
-        <StatisticLine text="good" number={good} />
-        <StatisticLine text="neutral" number={neutral} />
-        <StatisticLine text="bad" number={bad} />
-        <StatisticLine text="all" number={total} />
-        <StatisticLine text="average" number={average} />
-        <StatisticLine text="percentage" number={percentage} /> %
-      </>
+        <table>
+          <thead>
+          <tr>
+            <th>
+              statistics
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>
+              <StatisticLine text="good" number={good} />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <StatisticLine text="neutral" number={neutral} />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <StatisticLine text="bad" number={bad} />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <StatisticLine text="all" number={total} />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <StatisticLine text="average" number={average} />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <StatisticLine text="percentage" number={percentage} /> 
+            </td>
+          </tr>
+          </tbody>
+        </table>
     );
-  }
-  else{
-    return (<div>No feedback given</div>)
+  } else {
+    return <div>No feedback given</div>;
   }
 };
 export default Statistics;
