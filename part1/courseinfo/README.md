@@ -1,0 +1,1 @@
+# Solutions of part 1 exercises 1.3.-1.5 as folder courseinfo
