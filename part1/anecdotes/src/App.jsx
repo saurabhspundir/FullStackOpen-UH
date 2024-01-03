@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState } from 'react';
 
 const App = () => {
   const anecdotes = [
@@ -9,24 +9,31 @@ const App = () => {
     'Premature optimization is the root of all evil.',
     'Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.',
     'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when diagnosing patients.',
-    'The only way to go fast, is to go well.'
-  ]
-   
-  const [selected, setSelected] = useState(0)
-  const handleClick =() => {
-    const randomSelection =Math.floor(Math.random() * (anecdotes.length-1));
-    setSelected(randomSelection)
-  }
+    'The only way to go fast, is to go well.',
+  ];
+
+  const [selected, setSelected] = useState(0);
+  const [votes, setVotes] = useState(new Array(anecdotes.length).fill(0));
+  const handleClick = () => {
+    const randomSelection = Math.floor(Math.random() * (anecdotes.length - 1));
+    setSelected(randomSelection);
+  };
+
+  const handleVoteClick = () => {
+    const updatedVotes = [...votes];
+    updatedVotes[selected] = updatedVotes[selected] + 1;
+    setVotes(updatedVotes);
+  };
 
   return (
     <>
-    <div>
-      {anecdotes[selected]}
-
-    </div>
-    <div><button onClick={handleClick}>next anecdote</button> </div>
+      <div>{anecdotes[selected]}</div>
+      <div>
+        <button onClick={handleVoteClick}>vote</button>
+        <button onClick={handleClick}>next anecdote</button>{' '}
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
