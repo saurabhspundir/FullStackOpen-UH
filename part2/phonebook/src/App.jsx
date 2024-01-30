@@ -9,12 +9,17 @@ const App = () => {
   };
   const handleOnSubmit = (event) => {
     event.preventDefault();
-    const name = {
-      name: newName,
-      id: persons.length + 1,
-    };
-    setPersons(persons.concat(name));
-    setNewName('');
+    if(persons.find(person=>person.name.toLocaleUpperCase() === newName.toLocaleUpperCase() )!=null){
+      setNewName(newName);
+      alert(`${newName} is already added to phonebook`)
+    }else{
+      const name = {
+        name: newName,
+        id: persons.length + 1,
+      };
+      setPersons(persons.concat(name));
+      setNewName('');
+    }
   };
 
   return (
