@@ -1,15 +1,29 @@
 import { useState } from 'react';
 
 const App = () => {
-  const [persons, setPersons] = useState([{ name: 'Arto Hellas', id: 0,number:'123-456-7890' }]);
+  const [persons, setPersons] = useState([
+    { name: 'Arto Hellas', number: '040-123456', id: 1 },
+    { name: 'Ada Lovelace', number: '39-44-5323523', id: 2 },
+    { name: 'Dan Abramov', number: '12-43-234345', id: 3 },
+    { name: 'Mary Poppendieck', number: '39-23-6423122', id: 4 }
+  ]);
   const [newName, setNewName] = useState('');
   const [newNumber, setNewNumber] = useState('');
+  const [serachName, setSerachName] = useState('');
+
+  
+  const personsToShow=   persons.filter(person=>person.name.toLocaleUpperCase().includes(serachName.toLocaleUpperCase()))
 
   const handleOnInputChange = (event) => {
     setNewName(event.target.value);
   };
   const handleOnNumberInputChange = (event) => {
     setNewNumber(event.target.value);
+  };
+
+  const handleOnFilterInputChange = (event) => {
+    setSerachName(event.target.value);
+
   };
   const handleOnSubmit = (event) => {
     event.preventDefault();
@@ -28,8 +42,14 @@ const App = () => {
   };
 
   return (
+    <>
     <div>
       <h2>Phonebook</h2>
+      <p>
+      
+          filterShownWIth: <input onChange={handleOnFilterInputChange} />
+      
+       </p>
       <form onSubmit={handleOnSubmit}>
         <div>
           name: <input onChange={handleOnInputChange} />
@@ -43,11 +63,12 @@ const App = () => {
       </form>
       <h2>Numbers</h2>
       <ul>
-        {persons.map((person) => (
+        {personsToShow.map((person) => (
           <li key={person.id}>{person.name} {person.number}</li>
         ))}
       </ul>
     </div>
+    </>
   );
 };
 
